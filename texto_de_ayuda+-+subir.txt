@@ -1,0 +1,117 @@
+declare $:any;    
+
+$('#delete_patient').hide();
+$("#delete_patient").removeClass("show");
+$(".modal-backdrop").remove();
+$("body").removeClass();
+$("body").removeAttr("style");
+
+// Eliminar la parte de la zona horaria (GMT-0500 y entre paréntesis)
+$date_clean = preg_replace('/\(.*\)|[A-Z]{3}-\d{4}/', '', $request->birth_date);
+
+
+date_default_timezone_set('America/Lima');
+Carbon::setLocale('es');
+DB::statement("SET lc_time_names = 'es_ES'");
+
+https://cdn-icons-png.flaticon.com/512/1430/1430453.png
+
+//INSTALACIÓN DE REDIS
+
+https://github.com/microsoftarchive/redis/releases
+https://github.com/tporadowski/redis/releases
+
+REDIS_CLIENT=predis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+$cachedRecord = Redis::get('name_cache_record');
+if(isset($cachedRecord)) {
+     $products_c = json_decode($cachedRecord, FALSE);
+}else{
+   $register_c ..$query
+   Redis::set('name_cache_record', json_encode($register_c),'EX', 3600);
+}
+
+//NOTIFICACIONES WHATSAP
+
+  Enviar mensajes con Api Oficial de WhatsApp en LARAVEL
+  https://www.youtube.com/watch?v=wpeomH5re4M&t=3s
+
+  Crear token permanente WhatsApp Cloud Api
+  https://www.youtube.com/watch?v=if1Milcx-SQ
+  
+  Cambiar a modo activo nuestra app de WhatsApp Cloud Api
+  https://www.youtube.com/watch?v=TZWgGtxZ2MA&t=4s
+  
+  Como enviar WhatsApp a diferentes números (modo productivo)
+  https://www.youtube.com/watch?v=aZqsAX-TOJY
+
+
+//CODIGO DE ENVIO A WHATSAP
+
+        $accessToken = 'EAAFQqJKpYMkBOxNIdWvoqssP99X8EXTiwXNZAZCj3o5mGrRAqBRrogJExb5KW6izK8iNQWL1fhZCzOeve9GFv0wN0PTaRntfk2ihLHvlBkGSSZAngBvqXJEEYatRSFikbOSCurEz9EH5ZBoROFE4ZCXtYoBpO2mUCHSl0YZCZASeV0F4hJ9fNJuR6WO3mCBsotfbix6lif9oY6P5PPbeSrLB2Dz49DiRm87i';
+         
+        $fbApiUrl = 'https://graph.facebook.com/v17.0/XXXXXXXXXXXXXXXXX/messages';
+        
+        $data = [
+            'messaging_product' => 'whatsapp',
+            'to' => 'xxxxxxxxxxxxxxx',
+            'type' => 'template',
+            'template' => [
+                'name' => 'recordatorio',
+                'language' => [
+                    'code' => 'es_MX',
+                ],
+                "components"=>  [
+                    [
+                        "type" =>  "header",
+                        "parameters"=>  [
+                            [
+                                "type"=>  "text",
+                                "text"=>  "JOSE CODE"
+                            ]
+                        ]
+                    ],
+                    [
+                        "type" => "body",
+                        "parameters" => [
+                            [
+                                "type"=> "text",
+                                "text"=>  "1PM"
+                            ],
+                            [
+                                "type"=> "text",
+                                "text"=>  "DAVID DOCTOR"
+                            ],
+                        ] 
+                    ],
+                ],
+            ],
+        ];
+        
+        $headers = [
+            'Authorization: Bearer ' . $accessToken,
+            'Content-Type: application/json',
+        ];
+        
+        $ch = curl_init($fbApiUrl);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+        curl_close($ch);
+        
+        echo "HTTP Code: $httpCode\n";
+        echo "Response:\n$response\n";
+
+
+//*******************************************
+$months_name = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+ng generate interceptor PermisionInterceptor
