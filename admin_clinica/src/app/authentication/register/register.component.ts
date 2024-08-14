@@ -35,7 +35,7 @@ export class RegisterComponent {
       this.isValidConfirmPassword = true;
     } else {
       this.isValidConfirmPassword = false;
-      this.auth.login();
+      //this.auth.login();
     }
   }
   passwordFunc(){

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
 import { SideBarService } from 'src/app/shared/side-bar/side-bar.service';
 
@@ -14,7 +15,7 @@ export class HeaderComponent {
   public miniSidebar  = false;
   public addClass = false;
 
-  constructor(public router: Router,private sideBar: SideBarService) {
+  constructor(public router: Router,private sideBar: SideBarService, public authService: AuthService) {
     this.sideBar.toggleSideBar.subscribe((res: string) => {
       if (res == 'true') {
         this.miniSidebar = true;
@@ -33,6 +34,10 @@ export class HeaderComponent {
     } else {
       mainWrapper.classList.remove('open-msg-box');
     }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   public toggleSideBar(): void {
