@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  constructor(public auth: AuthService, public router:Router) {}
+  constructor(public auth: AuthService, public router: Router) { }
   ngOnInit(): void {
     if (localStorage.getItem('authenticated')) {
       localStorage.removeItem('authenticated');
@@ -34,12 +34,14 @@ export class LoginComponent implements OnInit {
 
   loginFormSubmit() {
     if (this.form.valid) {
-      this.auth.login(this.form.value.email ? this.form.value.email : '', this.form.value.password ? this.form.value.password : '').subscribe((resp:any) => {
+      this.auth.login(this.form.value.email ? this.form.value.email : '', this.form.value.password ? this.form.value.password : '').subscribe((resp: any) => {
         console.log(resp);
         if (resp) {
+          //El login es correcto
           this.router.navigate([routes.adminDashboard]);
         }
         else {
+          //El login es incorrecto
           alert('Usuario o contraseña incorrecta');
         }
       }, error => {

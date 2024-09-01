@@ -14,25 +14,25 @@ export class AuthService {
   constructor(private router: Router, public http: HttpClient) {
   }
 
-  login(email:any, password:any) {
+  login(email: any, password: any) {
     //localStorage.setItem('authenticated', 'true');
     //this.router.navigate([routes.adminDashboard]);
-    let URL = URL_SERVICIOS + "/auth/login";
+    const URL = URL_SERVICIOS + "/auth/login";
     return this.http.post(URL, { email: email, password: password }).pipe(
-      map((auth:any)=>{
+      map((auth: any) => {
         console.log(auth);
         const result = this.saveLocalStorage(auth);
         return result;
       }),
-      catchError((error:any)=>{
+      catchError((error: any) => {
         console.log(error);
         return of(undefined);
       })
     );
   }
 
-  saveLocalStorage(auth:any){
-    if(auth && auth.access_token){
+  saveLocalStorage(auth: any) {
+    if (auth && auth.access_token) {
       localStorage.setItem('token', auth.access_token);
       localStorage.setItem('user', JSON.stringify(auth.user));
       localStorage.setItem('authenticated', 'true');
