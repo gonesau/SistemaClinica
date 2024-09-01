@@ -11,8 +11,30 @@ import { catchError, map, of } from 'rxjs';
 })
 export class AuthService {
 
+  user: any;
+  token: any;
+
   constructor(private router: Router, public http: HttpClient) {
+    this.getLocalStorage();
   }
+
+
+  // Esta validación si la hice con copilot porque me daba error al enviar un JSON vacío o mal parseado
+  getLocalStorage() {
+    const USER = localStorage.getItem("user");
+    if (USER && USER !== "undefined") {
+      try {
+        this.user = JSON.parse(USER);
+      } catch (e) {
+        console.error("Error parsing JSON from localStorage", e);
+        this.user = null;
+      }
+    } else {
+      this.user = null;
+    }
+    
+    this.token = localStorage.getItem("token");
+  } 
 
   login(email: any, password: any) {
     //localStorage.setItem('authenticated', 'true');
@@ -21,6 +43,7 @@ export class AuthService {
     return this.http.post(URL, { email: email, password: password }).pipe(
       map((auth: any) => {
         console.log(auth);
+        console.log(auth.user);
         const result = this.saveLocalStorage(auth);
         return result;
       }),
@@ -34,12 +57,22 @@ export class AuthService {
   saveLocalStorage(auth: any) {
     if (auth && auth.access_token) {
       localStorage.setItem('token', auth.access_token);
-      localStorage.setItem('user', JSON.stringify(auth.user));
+  
+      // Verifica si auth.user existe antes de guardarlo
+      if (auth.user) {
+        localStorage.setItem('user', JSON.stringify(auth.user));
+      } else {
+        console.warn('User data is missing from the response');
+      }
+  
       localStorage.setItem('authenticated', 'true');
       return true;
     }
     return false;
   }
+  
+  
+  
 
   logout() {
     localStorage.removeItem("token");
@@ -47,4 +80,5 @@ export class AuthService {
     localStorage.removeItem("authenticated");
     this.router.navigate([routes.login]);
   }
+
 }

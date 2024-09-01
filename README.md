@@ -47,7 +47,7 @@ _Aquí vamos añadir capturas de pantalla o GIFs que muestren el sistema en func
 - [ ] Mejorar la interfaz de usuario
 
 
-## Contribuidores
+## Equipo de Trabajo
 
 <a href="https://github.com/gonesau/SistemaClinica/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=gonesau/SistemaClinica" />
