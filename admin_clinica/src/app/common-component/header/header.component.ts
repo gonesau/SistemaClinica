@@ -25,8 +25,9 @@ export class HeaderComponent {
         this.miniSidebar = false;
       }
     });
-    this.user = this.authService.user;
-    console.log(this.user);
+    const USER = localStorage.getItem('user');
+    this.user = JSON.parse(USER ? USER : '');
+    console.log(this.user.name);
   }
 
   openBoxFunc() {

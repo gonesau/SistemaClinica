@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
       Validators.email,
     ]),
     password: new FormControl('admin1234', [Validators.required]),
-    name: new FormControl('Omar', [Validators.required]),
   });
 
   get f() {
@@ -41,7 +40,9 @@ export class LoginComponent implements OnInit {
         console.log(resp);
         if (resp) {
           //El login es correcto
-          this.router.navigate([routes.adminDashboard]);
+          setTimeout(() => {
+            this.router.navigate([routes.adminDashboard]);
+          } , 50);
         }
         else {
           //El login es incorrecto

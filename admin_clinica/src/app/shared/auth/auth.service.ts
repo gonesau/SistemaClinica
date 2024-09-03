@@ -21,19 +21,14 @@ export class AuthService {
 
   // Esta validación si la hice con copilot porque me daba error al enviar un JSON vacío o mal parseado
   getLocalStorage() {
-    const USER = localStorage.getItem("user");
-    if (USER && USER !== "undefined") {
-      try {
-        this.user = JSON.parse(USER);
-      } catch (e) {
-        console.error("Error parsing JSON from localStorage", e);
-        this.user = null;
-      }
-    } else {
+    if(localStorage.getItem('token') && localStorage.getItem('user')){
+      const USER = localStorage.getItem('user');
+      this.user = JSON.parse(USER ? USER : '');
+      this.token = localStorage.getItem('token'); 
+    }else{
       this.user = null;
+      this.token = null;
     }
-    
-    this.token = localStorage.getItem("token");
   } 
 
   login(email: any, password: any) {
@@ -57,14 +52,7 @@ export class AuthService {
   saveLocalStorage(auth: any) {
     if (auth && auth.access_token) {
       localStorage.setItem('token', auth.access_token);
-  
-      // Verifica si auth.user existe antes de guardarlo
-      if (auth.user) {
-        localStorage.setItem('user', JSON.stringify(auth.user));
-      } else {
-        console.warn('User data is missing from the response');
-      }
-  
+      localStorage.setItem('user', JSON.stringify(auth.user));
       localStorage.setItem('authenticated', 'true');
       return true;
     }
