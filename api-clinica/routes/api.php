@@ -24,7 +24,7 @@ Route::group([
 
     //'middleware' => 'api',
     'prefix' => 'auth',
-    //'middleware' => ['role:super-admin'],
+    //'middleware' => ['role:admin','permission:publish articles'],
 
 ], function ($router) {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -32,4 +32,6 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->name('me');
+    Route::post('/list', [AuthController::class, 'list']);
+    Route::post('/reg', [AuthController::class, 'reg']);
 });
