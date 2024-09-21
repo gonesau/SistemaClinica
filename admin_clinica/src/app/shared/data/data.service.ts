@@ -200,6 +200,27 @@ export class DataService {
       separateRoute: false,
       menu: [
         {
+          menuValue: 'Roles y Permisos',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'gallery',
+          base2: 'profile',
+          icon: 'fa-columns',
+          faIcon: true,
+          subMenus: [
+            {
+              menuValue: 'Register',
+              route: routes.registerRole,
+              base: routes.registerRole,
+            },
+            {
+              menuValue: 'Listado',
+              route: routes.listadoRole,
+              base: routes.listadoRole,
+            },
+          ],
+        },
+        {
           menuValue: 'Dashboard',
           hasSubRoute: true,
           showSubRoute: false,

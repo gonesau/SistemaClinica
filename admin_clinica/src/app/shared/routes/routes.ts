@@ -356,4 +356,12 @@ export class routes {
   public static get error500(): string {
     return this.baseUrl + '/error/error500';
   }
+
+  public static get registerRole(): string {
+    return this.baseUrl + '/roles/register';
+  }
+
+  public static get listadoRole(): string {
+    return this.baseUrl + '/roles/list';
+  }
 }
