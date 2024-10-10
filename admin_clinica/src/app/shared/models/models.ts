@@ -300,7 +300,8 @@ export interface SubMenu {
   menuValue: string;
   route: string;
   base: string;
- 
+  permission?: string;
+  show_nav?: boolean;
 }
 export interface MenuItem {
   menuValue: string;

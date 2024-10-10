@@ -26,7 +26,7 @@
                           ? 'd-block'
                           : 'd-none'
                       ">
-                    <a [routerLink]="subMenus.route" [class.active]="currentUrl === subMenus.base">
+                    <a [routerLink]="subMenus.route" *ngIf="subMenus.show_nav" [class.active]="currentUrl === subMenus.base">
                       {{ subMenus.menuValue | titlecase }}
                     </a>
                   </li>
