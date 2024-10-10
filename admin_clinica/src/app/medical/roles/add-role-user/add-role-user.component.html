@@ -40,50 +40,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Doctor</td>
-                                        <td>
-                                            <div class="">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Doctor List
-                                                    </label>
+                                    <ng-container *ngFor="let side of sideBar">
+                                        <tr>
+                                            <td>{{ side.menuValue }}</td>
+                                            <td>
+                                                <div class="" *ngIf="side.subMenus && side.subMenus.length > 0">
+                                                    <ng-container *ngFor="let subMenu of side.subMenus">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="checkbox"> {{subMenu.menuValue}}
+                                                            </label>
+                                                        </div>
+                                                    </ng-container>    
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Doctor add
-                                                    </label>
+                                                <div class="" *ngIf="side.subMenus && side.subMenus.length === 0">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="checkbox"> {{side.menuValue}}
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Profile Doctor
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pacientes</td>
-                                        <td>
-                                            <div class="">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Paciente add
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Paciente list
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="checkbox"> Paciente Perfil
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
                                 </tbody>
                             </table>
                         </div>
