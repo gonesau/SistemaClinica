@@ -209,7 +209,7 @@ export class DataService {
           faIcon: true,
           subMenus: [
             {
-              menuValue: 'Register',
+              menuValue: 'Registro',
               route: routes.registerRole,
               base: routes.registerRole,
             },
