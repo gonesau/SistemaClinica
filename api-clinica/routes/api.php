@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\Rol\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,5 @@ Route::group([
     Route::post('/list', [AuthController::class, 'list']);
     Route::post('/reg', [AuthController::class, 'reg']);
 });
+
+Route::resource("roles", RolesController::class);
