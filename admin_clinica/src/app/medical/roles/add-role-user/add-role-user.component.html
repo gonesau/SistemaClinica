@@ -21,19 +21,30 @@
                         <div class="form-group row">
                             <label for="text" class="col-form-label col-md-2">Nombre de Rol</label>
                             <div class="col-md-10">
-                                <input type="text" [(ngModel)]="name" class="form-control">
+                                <input type="text" name="name" [(ngModel)]="name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12 text-end">
-                                <button class="btn btn-primary" (click)="save()" >
+                                <button class="btn btn-primary" (click)="save()">
                                     Guardar
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group row" *ngIf="valid_form">
+                            <div class="col-md-8">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error!</strong> Es necesario ingresar un nombre y seleccionar un permiso.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"> </span>
+                                    </button>
+                                </div>
+                            </div> 
+                        </div>
                     </form>
                 </div>
             </div>
+            
             <div class="col-lg-8">
                 <div class="card-box">
                     <div class="card-block">

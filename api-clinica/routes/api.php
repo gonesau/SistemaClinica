@@ -37,4 +37,9 @@ Route::group([
     Route::post('/reg', [AuthController::class, 'reg']);
 });
 
-Route::resource("roles", RolesController::class);
+
+Route::group([
+    'middleware' => 'auth:api',
+], function ($router) {
+    Route::resource("roles", RolesController::class);
+});
