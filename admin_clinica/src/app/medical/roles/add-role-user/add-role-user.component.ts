@@ -31,4 +31,8 @@ export class AddRoleUserComponent {
       console.log(this.permissions);
     }
   }
+
+  save(){
+    console.log(this.name, this.permissions);
+  }
 }
