@@ -37,7 +37,7 @@ export class AddRoleUserComponent {
 
   save(){
     this.valid_form = false;
-    console.log(this.name, this.permissions);
+    
 
     if(!this.name || this.permissions.length == 0){
       this.valid_form = true;
@@ -51,6 +51,8 @@ export class AddRoleUserComponent {
     console.log("enviando", data);
     this.RoleService.storeRoles(data).subscribe((resp:any) => {
       console.log(resp);
+      this.name = '';
+      this.permissions = [];
     });
   }
 }
