@@ -16,7 +16,7 @@ class RolesController extends Controller
         //Filtro por nombre de rol
         $name = $request->search;
 
-        $roles = Role::where('name', 'LIKE', "%.$name.%")->orderBy('id', 'desc')->get();
+        $roles = Role::where('name', 'LIKE', "%{$name}%")->orderBy('id', 'desc')->get();
 
         return response()->json([
             "roles" => $roles->map(function ($rol) {

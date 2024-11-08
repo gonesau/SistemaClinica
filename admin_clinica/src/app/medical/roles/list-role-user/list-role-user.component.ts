@@ -33,6 +33,9 @@ export class ListRoleUserComponent {
   ) {
 
   }
+
+
+
   ngOnInit() {
     this.getTableData();
   }
@@ -41,8 +44,7 @@ export class ListRoleUserComponent {
     this.serialNumberArray = [];
 
     this.RoleService.listRoles().subscribe((resp:any) => {
-
-
+      
       console.log(resp);
       this.totalData = resp.roles.length;
       resp.roles.map((res: any, index: number) => {
