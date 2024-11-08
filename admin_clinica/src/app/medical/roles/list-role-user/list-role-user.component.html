@@ -34,7 +34,7 @@
                                                     <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
                                             </div>
                                             <div class="add-group">
-                                                <a href="#" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
+                                                <a routerLink="/roles/register" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@
                                 <tbody>
                                     <tr *ngFor="let data of rolesList">
                                         <td>{{data.name}}</td>
-                                        <td></td>
+                                        <td>{{data.permision_pluck.length > 0 ? data.permision_pluck: 'Todos los permisos'}}</td>
                                         <td>{{data.created_at}}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">

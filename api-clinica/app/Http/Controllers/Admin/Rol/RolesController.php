@@ -24,6 +24,7 @@ class RolesController extends Controller
                     "id" => $rol->id,
                     "name" => $rol->name,
                     "permision" => $rol->permissions,
+                    "permision_pluck" => $rol->permissions->pluck('name'),
                     "created_at" => $rol->created_at->format('d-m-Y'),
                 ];
             }),
