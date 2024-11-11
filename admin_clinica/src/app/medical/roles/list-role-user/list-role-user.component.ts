@@ -19,14 +19,15 @@ export class ListRoleUserComponent {
   public lastIndex = 0;
   public pageSize = 10;
   public totalData = 0;
-  public skip = 0;
-  public limit: number = this.pageSize;
+  public skip = 0; //MIN
+  public limit: number = this.pageSize; //MAX
   public pageIndex = 0;
   public serialNumberArray: Array<number> = [];
   public currentPage = 1;
   public pageNumberArray: Array<number> = [];
   public pageSelection: Array<any> = [];
   public totalPages = 0;
+  public role_generals: any = [];
 
   constructor(
     public RoleService: RolesService,
@@ -47,19 +48,29 @@ export class ListRoleUserComponent {
       
       console.log(resp);
       this.totalData = resp.roles.length;
-      resp.roles.map((res: any, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-
-          this.rolesList.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<any>(this.rolesList);
-      this.calculateTotalPages(this.totalData, this.pageSize);
+      this.role_generals = resp.roles;
+      this.getTableDataGeneral();
+      
     });
 
   }
+
+  getTableDataGeneral() {
+    this.rolesList = [];
+    this.serialNumberArray = [];
+    this.role_generals.map((res: any, index: number) => {
+      const serialNumber = index + 1;
+      if (index >= this.skip && serialNumber <= this.limit) {
+
+        this.rolesList.push(res);
+        this.serialNumberArray.push(serialNumber);
+      }
+    });
+    this.dataSource = new MatTableDataSource<any>(this.rolesList);
+    this.calculateTotalPages(this.totalData, this.pageSize);
+  }
+
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
@@ -88,13 +99,13 @@ export class ListRoleUserComponent {
       this.pageIndex = this.currentPage - 1;
       this.limit += this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getTableDataGeneral();
     } else if (event == 'previous') {
       this.currentPage--;
       this.pageIndex = this.currentPage - 1;
       this.limit -= this.pageSize;
       this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
+      this.getTableDataGeneral();
     }
   }
 
@@ -115,6 +126,7 @@ export class ListRoleUserComponent {
     this.limit = this.pageSize;
     this.skip = 0;
     this.currentPage = 1;
+    this.searchDataValue = '';
     this.getTableData();
   }
 
