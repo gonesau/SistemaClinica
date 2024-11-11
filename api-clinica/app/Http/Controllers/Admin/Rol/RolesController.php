@@ -20,7 +20,7 @@ class RolesController extends Controller
 
         return response()->json([
             "roles" => $roles->map(function ($rol) {
-                return[
+                return [
                     "id" => $rol->id,
                     "name" => $rol->name,
                     "permision" => $rol->permissions,
@@ -38,7 +38,7 @@ class RolesController extends Controller
     {
         $is_role = Role::where('name', $request->name)->first();
 
-        
+
         if ($is_role) {
             return response()->json([
                 "message" => 403,
@@ -66,7 +66,15 @@ class RolesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $role = Role::findOrFail(function($rol){
+            return [
+                "id" => $rol->id,
+                "name" => $rol->name,
+                "permision" => $rol->permissions,
+                "permision_pluck" => $rol->permissions->pluck('name'),
+                "created_at" => $rol->created_at->format('d-m-Y'),
+            ];
+        });
     }
 
     /**
@@ -84,7 +92,8 @@ class RolesController extends Controller
         }
 
         $role = Role::findOrFail($request->id);
-        $role->update($request->all());;
+        $role->update($request->all());
+        ;
 
         $role->syncPermissions($request->permisions);
         return response()->json([
