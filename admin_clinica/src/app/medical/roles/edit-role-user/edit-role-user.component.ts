@@ -13,8 +13,7 @@ export class EditRoleUserComponent {
   name = '';
   permissions:any = [];
   valid_form = false;
-
-    role_id:any;
+  role_id:any;
 
   constructor(
     public DataService: DataService,
@@ -27,6 +26,7 @@ export class EditRoleUserComponent {
   ngOnInit(): void {
     this.sideBar = this.DataService.sideBar[0].menu;
     this.activatedRoute.params.subscribe((resp:any) => {
+      console.log(resp);
       this.role_id = resp.id;
     }
     );
@@ -39,7 +39,7 @@ export class EditRoleUserComponent {
     this.RoleService.showRoles(this.role_id).subscribe((resp:any) => {
       console.log(resp);
       this.name = resp.name;
-      this.permissions = resp.permission_pluck;
+      this.permissions = resp.permision_pluck;
     });
   }
 
@@ -67,12 +67,9 @@ export class EditRoleUserComponent {
       name: this.name,
       permisions: this.permissions,
     };
-    console.log("enviando", data);
-    this.RoleService.storeRoles(data).subscribe((resp:any) => {
+    this.RoleService.editRoles(data, this.role_id).subscribe((resp:any) => {
       console.log(resp);
-      this.name = '';
-      this.permissions = [];
-    });
+    })
   }
 
 }

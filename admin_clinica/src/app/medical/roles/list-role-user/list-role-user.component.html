@@ -68,7 +68,7 @@
                                         <td>{{data.permision_pluck.length > 0 ? data.permision_pluck: 'Todos los permisos'}}</td>
                                         <td>{{data.created_at}}</td>
                                         <td class="text-end">
-                                            <div class="dropdown dropdown-action">
+                                            <div class="dropdown dropdown-action" *ngIf="data.id != 1">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" [routerLink]="['/roles/list/edit/', data.id ]" ><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
